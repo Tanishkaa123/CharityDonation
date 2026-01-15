@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CharityChain - Transparent Blockchain Donations</title>
+    <meta name="description" content="Donate ETH transparently to verified charities using blockchain technology">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Effects -->
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 0L0 20L20 40L40 20L20 0Z" fill="url(#logo-gradient)" />
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#667eea" />
+                                <stop offset="100%" stop-color="#764ba2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">CharityChain</span>
+                </div>
+                <button id="connectWallet" class="btn btn-primary wallet-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M17.5 6.25H2.5V15H17.5V6.25Z" stroke="currentColor" stroke-width="1.5" />
+                        <path
+                            d="M15 10.625C15 11.2463 14.4963 11.75 13.875 11.75C13.2537 11.75 12.75 11.2463 12.75 10.625C12.75 10.0037 13.2537 9.5 13.875 9.5C14.4963 9.5 15 10.0037 15 10.625Z"
+                            fill="currentColor" />
+                    </svg>
+                    Connect Wallet
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Powered by Ethereum Sepolia
+                </div>
+                <h1 class="hero-title">
+                    Make a Difference with
+                    <span class="gradient-text">Transparent Donations</span>
+                </h1>
+                <p class="hero-description">
+                    Every donation is tracked on the blockchain. Support verified charities with complete transparency
+                    and security.
+                </p>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="stat-value" id="totalDonations">0 ETH</div>
+                    <div class="stat-label">Total Raised</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="stat-value" id="totalDonors">0</div>
+                    <div class="stat-label">Generous Donors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.57831 8.50903 2.99871 7.05 2.99871C5.59096 2.99871 4.19169 3.57831 3.16 4.61C2.1283 5.64169 1.54871 7.04097 1.54871 8.5C1.54871 9.95903 2.1283 11.3583 3.16 12.39L4.22 13.45L12 21.23L19.78 13.45L20.84 12.39C21.351 11.8792 21.7564 11.2728 22.0329 10.6054C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39464C21.7564 5.72718 21.351 5.12084 20.84 4.61Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="stat-value" id="yourDonation">0 ETH</div>
+                    <div class="stat-label">Your Contribution</div>
+                </div>
+            </section>
+
+            <!-- Main Action Cards -->
+            <div class="cards-grid">
+                <!-- Donation Card -->
+                <div class="card donation-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Make a Donation</h2>
+                        <p class="card-subtitle">Support verified charities with ETH</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <label for="donationAmount" class="input-label">Amount (ETH)</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="donationAmount" class="input" placeholder="0.0" step="0.001"
+                                    min="0">
+                                <span class="input-suffix">ETH</span>
+                            </div>
+                        </div>
+
+                        <div class="quick-amounts">
+                            <button class="quick-amount-btn" data-amount="0.01">0.01 ETH</button>
+                            <button class="quick-amount-btn" data-amount="0.05">0.05 ETH</button>
+                            <button class="quick-amount-btn" data-amount="0.1">0.1 ETH</button>
+                            <button class="quick-amount-btn" data-amount="0.5">0.5 ETH</button>
+                        </div>
+
+                        <button id="donateBtn" class="btn btn-gradient btn-large">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M17.3667 8.925C18.0708 9.32083 18.0708 10.3458 17.3667 10.7417L4.61667 17.8583C3.9125 18.2542 3.04167 17.7417 3.04167 16.95V3.71667C3.04167 2.925 3.9125 2.4125 4.61667 2.80833L17.3667 8.925Z"
+                                    fill="currentColor" />
+                            </svg>
+                            Donate Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contract Info Card -->
+                <div class="card info-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Contract Information</h2>
+                        <p class="card-subtitle">Verified on Sepolia Testnet</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-item">
+                            <label class="info-label">Contract Address</label>
+                            <div class="info-value-group">
+                                <input type="text" id="contractAddressInput" class="input"
+                                    placeholder="0x8bEe2e7C327320dDcB5882917C488e80A2513bf7">
+                                <button id="saveContractBtn" class="btn btn-secondary">Save</button>
+                            </div>
+                            <div id="contractAddressDisplay" class="info-value" style="display: none;">
+                                <span id="contractAddressText"></span>
+                                <button class="copy-btn" data-copy="contract">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path
+                                            d="M13.3333 6H7.33333C6.59695 6 6 6.59695 6 7.33333V13.3333C6 14.0697 6.59695 14.6667 7.33333 14.6667H13.3333C14.0697 14.6667 14.6667 14.0697 14.6667 13.3333V7.33333C14.6667 6.59695 14.0697 6 13.3333 6Z"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M3.33333 10H2.66667C2.31305 10 1.97391 9.85952 1.72386 9.60947C1.47381 9.35943 1.33333 9.02029 1.33333 8.66667V2.66667C1.33333 2.31305 1.47381 1.97391 1.72386 1.72386C1.97391 1.47381 2.31305 1.33333 2.66667 1.33333H8.66667C9.02029 1.33333 9.35943 1.47381 9.60948 1.72386C9.85952 1.97391 10 2.31305 10 2.66667V3.33333"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <label class="info-label">Charity Address</label>
+                            <div class="info-value" id="charityAddress">
+                                <span>Not connected</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <label class="info-label">Contract Balance</label>
+                            <div class="info-value" id="contractBalance">
+                                <span>0 ETH</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <label class="info-label">Contract Status</label>
+                            <div class="status-badge" id="contractStatus">
+                                <span class="status-dot"></span>
+                                <span>Unknown</span>
+                            </div>
+                        </div>
+
+                        <button id="refreshBtn" class="btn btn-secondary btn-block">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path
+                                    d="M14 2V6M14 6H10M14 6L11.3333 3.66667C10.5871 2.91428 9.66714 2.35045 8.65267 2.02468C7.6382 1.69891 6.56089 1.62058 5.51118 1.79617C4.46147 1.97176 3.46989 2.39626 2.61842 3.03567C1.76695 3.67508 1.07987 4.51107 0.613333 5.47333M2 14V10M2 10H6M2 10L4.66667 12.3333C5.41286 13.0857 6.33286 13.6496 7.34733 13.9753C8.3618 14.3011 9.43911 14.3794 10.4888 14.2038C11.5385 14.0282 12.5301 13.6037 13.3816 12.9643C14.233 12.3249 14.9201 11.4889 15.3867 10.5267"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Refresh Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Donations -->
+            <section class="recent-donations">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Donations</h2>
+                    <p class="section-subtitle">Latest contributions from our community</p>
+                </div>
+                <div id="donationsList" class="donations-list">
+                    <div class="empty-state">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="32" r="32" fill="rgba(102, 126, 234, 0.1)" />
+                            <path d="M32 20V44M20 32H44" stroke="#667eea" stroke-width="3" stroke-linecap="round" />
+                        </svg>
+                        <p>No donations yet. Be the first to contribute!</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                    d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 15L3 10L4.41 8.59L8 12.17L15.59 4.58L17 6L8 15Z"
+                    fill="currentColor" />
+            </svg>
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
