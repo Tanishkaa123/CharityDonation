@@ -214,7 +214,8 @@ async function refreshData() {
         // Update stats
         document.getElementById('totalDonations').textContent =
             parseFloat(ethers.utils.formatEther(totalDonations)).toFixed(4) + ' ETH';
-        document.getElementById('totalDonors').textContent = totalDonors.toString();
+        document.getElementById('availableFunds').textContent =
+            parseFloat(ethers.utils.formatEther(contractBalance)).toFixed(4) + ' ETH';
         document.getElementById('contractBalance').innerHTML =
             `<span>${parseFloat(ethers.utils.formatEther(contractBalance)).toFixed(4)} ETH</span>`;
 
