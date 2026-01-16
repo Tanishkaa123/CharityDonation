@@ -16,21 +16,16 @@ let provider;
 let signer;
 let contract;
 let userAddress;
-let contractAddress = localStorage.getItem('contractAddress') || '';
+// Hardcoded contract address - deployed on Sepolia testnet
+const contractAddress = '0x8bEe2e7C327320dDcB5882917C488e80A2513bf7';
 
 // Initialize the app
 window.addEventListener('DOMContentLoaded', () => {
     initializeApp();
     setupEventListeners();
 
-    // Load saved contract address
-    if (contractAddress) {
-        document.getElementById('contractAddressInput').value = contractAddress;
-        document.getElementById('contractAddressDisplay').style.display = 'flex';
-        document.getElementById('contractAddressText').textContent = formatAddress(contractAddress);
-        document.getElementById('contractAddressInput').style.display = 'none';
-        document.getElementById('saveContractBtn').textContent = 'Change';
-    }
+    // Display the hardcoded contract address
+    document.getElementById('contractAddressText').textContent = formatAddress(contractAddress);
 });
 
 function initializeApp() {
@@ -59,21 +54,16 @@ function setupEventListeners() {
         });
     });
 
-    // Contract address save
-    document.getElementById('saveContractBtn').addEventListener('click', saveContractAddress);
-
     // Refresh button
     document.getElementById('refreshBtn').addEventListener('click', refreshData);
 
-    // Copy buttons
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const type = e.currentTarget.dataset.copy;
-            if (type === 'contract') {
-                copyToClipboard(contractAddress);
-            }
+    // Copy button for contract address
+    const copyBtn = document.querySelector('.copy-btn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            copyToClipboard(contractAddress);
         });
-    });
+    }
 }
 
 async function connectWallet() {
@@ -144,58 +134,15 @@ async function handleAccountsChanged(accounts) {
         ${formatAddress(userAddress)}
     `;
 
-    // Initialize contract if address is set
-    if (contractAddress) {
-        contract = new ethers.Contract(contractAddress, CONTRACT_ABI, signer);
-        await refreshData();
-        setupEventListeners();
-    }
-}
-
-async function saveContractAddress() {
-    const btn = document.getElementById('saveContractBtn');
-    const input = document.getElementById('contractAddressInput');
-    const display = document.getElementById('contractAddressDisplay');
-
-    if (btn.textContent === 'Change') {
-        input.style.display = 'block';
-        display.style.display = 'none';
-        btn.textContent = 'Save';
-        return;
-    }
-
-    const address = input.value.trim();
-
-    if (!ethers.utils.isAddress(address)) {
-        showToast('Invalid contract address', 'error');
-        return;
-    }
-
-    contractAddress = address;
-    localStorage.setItem('contractAddress', address);
-
-    document.getElementById('contractAddressText').textContent = formatAddress(address);
-    input.style.display = 'none';
-    display.style.display = 'flex';
-    btn.textContent = 'Change';
-
-    if (signer) {
-        contract = new ethers.Contract(contractAddress, CONTRACT_ABI, signer);
-        await refreshData();
-        listenToEvents();
-    }
-
-    showToast('Contract address saved!', 'success');
+    // Initialize contract with hardcoded address
+    contract = new ethers.Contract(contractAddress, CONTRACT_ABI, signer);
+    await refreshData();
+    listenToEvents();
 }
 
 async function makeDonation() {
     if (!signer) {
         showToast('Please connect your wallet first', 'error');
-        return;
-    }
-
-    if (!contractAddress) {
-        showToast('Please set the contract address first', 'error');
         return;
     }
 
@@ -250,7 +197,7 @@ async function makeDonation() {
 
 async function refreshData() {
     if (!contract) {
-        showToast('Please set the contract address first', 'error');
+        showToast('Please connect your wallet first', 'error');
         return;
     }
 
